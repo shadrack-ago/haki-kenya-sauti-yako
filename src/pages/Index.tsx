@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import HakiAIHeader from "@/components/HakiAIHeader";
 import LanguageSelector from "@/components/LanguageSelector";
@@ -16,11 +15,11 @@ const Index = () => {
 
   const handleUrgent = () => setUrgent(true);
   const handleEscalate = () => {
-    alert(
-      language === "sw"
-        ? "Pigia simu nambari ya msaada wa kisheria: 1559 au tembelea tovuti ya IPOA."
-        : "Call the legal support hotline: 1559 or visit the IPOA website."
-    );
+    const englishNumbers =
+      "Call the legal support hotline: 1559\nOr directly contact IPOA at:\n+254 792 532 626/627\n+254 773 999 000\n+254 772 333 000\n+254 780 490 600/601";
+    const swahiliNumbers =
+      "Pigia simu nambari ya msaada wa kisheria: 1559\nAu wasiliana moja kwa moja na IPOA:\n+254 792 532 626/627\n+254 773 999 000\n+254 772 333 000\n+254 780 490 600/601";
+    alert(language === "sw" ? swahiliNumbers : englishNumbers);
     setUrgent(false);
   };
   const handleTopic = (topicKey: string) => {
