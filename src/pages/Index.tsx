@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 // Removed the Flag icon import since we use an image now
 import HakiAIHeader from "@/components/HakiAIHeader";
@@ -33,17 +32,19 @@ const Index = () => {
   const handleEmergencyClick = () => setUrgent(true);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-100 via-accent/40 to-background animate-fade-in">
-      {/* Kenyan flag at top left - now with an actual image */}
-      <div className="fixed top-4 left-4 z-50 flex items-center">
-        <img
-          src="/lovable-uploads/ff77ba92-cb89-47cc-9999-90ec1ce365b0.png"
-          alt="Kenyan Flag"
-          className="w-14 h-auto md:w-20 drop-shadow-md rounded"
-          style={{ objectFit: "cover" }}
-        />
-      </div>
-      <div className="max-w-4xl mx-auto px-4 py-6">
+    <main
+      className="min-h-screen bg-gradient-to-br from-blue-100 via-accent/40 to-background animate-fade-in relative overflow-hidden"
+      style={{
+        backgroundImage: "url('/lovable-uploads/ff77ba92-cb89-47cc-9999-90ec1ce365b0.png'), linear-gradient(to bottom right, #e0f2fe 0%, #c7e0f8 80%)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {/* Overlay for UI readability */}
+      <div className="absolute inset-0 bg-white/70 pointer-events-none z-0"></div>
+      {/* Page Content */}
+      <div className="max-w-4xl mx-auto px-4 py-6 relative z-10">
         {/* Hero & Welcome Section */}
         <section className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mb-10">
           <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-4 animate-fade-in">
