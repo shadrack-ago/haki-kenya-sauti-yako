@@ -1,5 +1,6 @@
 
 import React from "react";
+import { AlertTriangle, Phone } from "lucide-react";
 
 interface Props {
   urgent: boolean;
@@ -9,17 +10,25 @@ interface Props {
 const EmergencyAlert: React.FC<Props> = ({ urgent, onEscalate }) => {
   if (!urgent) return null;
   return (
-    <div className="bg-red-100 border-l-4 border-red-600 text-red-700 p-4 mb-4 rounded flex flex-col gap-2">
-      <strong>It sounds like you may need urgent help!</strong>
-      <span>
-        Do you want us to escalate this to a legal support hotline or start an emergency call?
-      </span>
-      <button
-        className="self-start bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
-        onClick={onEscalate}
-      >
-        Escalate / Emergency Call
-      </button>
+    <div className="bg-red-50 border-2 border-red-200 text-red-800 p-6 rounded-xl shadow-md animate-fade-in">
+      <div className="flex items-start gap-3">
+        <AlertTriangle className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
+        <div className="flex-1">
+          <strong className="block text-lg font-semibold mb-2">
+            It sounds like you may need urgent help!
+          </strong>
+          <p className="mb-4">
+            Do you want us to escalate this to a legal support hotline or start an emergency call?
+          </p>
+          <button
+            className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors shadow-md"
+            onClick={onEscalate}
+          >
+            <Phone className="w-4 h-4" />
+            Escalate / Emergency Call
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
