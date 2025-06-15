@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Flag } from "lucide-react";
+// Removed the Flag icon import since we use an image now
 import HakiAIHeader from "@/components/HakiAIHeader";
 import LanguageSelector from "@/components/LanguageSelector";
 import EmergencyAlert from "@/components/EmergencyAlert";
@@ -34,10 +34,14 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-100 via-accent/40 to-background animate-fade-in">
-      {/* Kenyan flag at top right */}
+      {/* Kenyan flag at top right - now with an actual image */}
       <div className="fixed top-4 right-4 z-50 flex items-center">
-        <Flag className="w-8 h-8 text-primary drop-shadow-md" aria-label="Kenyan Flag" />
-        <span className="ml-2 text-xl font-extrabold select-none" aria-hidden="true" title="Kenya">🇰🇪</span>
+        <img
+          src="/lovable-uploads/ff77ba92-cb89-47cc-9999-90ec1ce365b0.png"
+          alt="Kenyan Flag"
+          className="w-14 h-auto md:w-20 drop-shadow-md rounded"
+          style={{ objectFit: "cover" }}
+        />
       </div>
       <div className="max-w-4xl mx-auto px-4 py-6">
         {/* Hero & Welcome Section */}
