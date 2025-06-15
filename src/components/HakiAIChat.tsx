@@ -38,6 +38,31 @@ const cannedResponses = {
   },
 };
 
+const IPOA_HELP_INFO = {
+  en: `Sorry, I couldn't find a direct answer in the Constitution.
+
+If you need urgent help or want to report police misconduct or abuse, contact:
+• Legal Support Hotline: 1559
+• IPOA Emergency Lines:
+  +254 792 532 626/627
+  +254 773 999 000
+  +254 772 333 000
+  +254 780 490 600/601
+
+Or visit the IPOA website for more ways to get support.`,
+  sw: `Samahani, sikuweza kupata jibu la moja kwa moja kwenye katiba.
+
+Ikiwa unahitaji msaada wa haraka au kuripoti unyanyasaji wa polisi, wasiliana na:
+• Nambari ya Msaada wa Kisheria: 1559
+• Nambari za Dharura za IPOA:
+  +254 792 532 626/627
+  +254 773 999 000
+  +254 772 333 000
+  +254 780 490 600/601
+
+Au tembelea tovuti ya IPOA kwa usaidizi zaidi.`,
+};
+
 const HakiAIChat: React.FC<Props> = ({ language, onUrgentDetected, activeTopic }) => {
   const [messages, setMessages] = useState<Message[]>([
     { sender: "ai", text: defaultGreetings[language] }
@@ -97,15 +122,12 @@ const HakiAIChat: React.FC<Props> = ({ language, onUrgentDetected, activeTopic }
           }
         ]);
       } else {
-        // Fallback answer
+        // Fallback answer: now includes IPOA numbers and more details!
         setMessages((prev) => [
           ...prev,
           {
             sender: "ai",
-            text:
-              language === "sw"
-                ? "Samahani, sikuweza kupata jibu la moja kwa moja kwenye katiba. Tafadhali jaribu kuuliza kwa njia nyingine au uliza kuhusu haki zako."
-                : "Sorry, I couldn't find a direct answer in the Constitution. Please rephrase or ask about your rights."
+            text: IPOA_HELP_INFO[language]
           }
         ]);
       }
