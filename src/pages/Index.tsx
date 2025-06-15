@@ -1,4 +1,6 @@
+
 import React, { useState } from "react";
+import { Flag } from "lucide-react";
 import HakiAIHeader from "@/components/HakiAIHeader";
 import LanguageSelector from "@/components/LanguageSelector";
 import EmergencyAlert from "@/components/EmergencyAlert";
@@ -32,6 +34,11 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-100 via-accent/40 to-background animate-fade-in">
+      {/* Kenyan flag at top right */}
+      <div className="fixed top-4 right-4 z-50 flex items-center">
+        <Flag className="w-8 h-8 text-primary drop-shadow-md" aria-label="Kenyan Flag" />
+        <span className="ml-2 text-xl font-extrabold select-none" aria-hidden="true" title="Kenya">🇰🇪</span>
+      </div>
       <div className="max-w-4xl mx-auto px-4 py-6">
         {/* Hero & Welcome Section */}
         <section className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mb-10">
