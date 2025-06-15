@@ -34,8 +34,8 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-100 via-accent/40 to-background animate-fade-in">
-      {/* Kenyan flag at top right - now with an actual image */}
-      <div className="fixed top-4 right-4 z-50 flex items-center">
+      {/* Kenyan flag at top left - now with an actual image */}
+      <div className="fixed top-4 left-4 z-50 flex items-center">
         <img
           src="/lovable-uploads/ff77ba92-cb89-47cc-9999-90ec1ce365b0.png"
           alt="Kenyan Flag"
