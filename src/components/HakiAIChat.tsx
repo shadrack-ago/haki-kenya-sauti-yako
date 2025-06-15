@@ -63,6 +63,123 @@ Ikiwa unahitaji msaada wa haraka au kuripoti unyanyasaji wa polisi, wasiliana na
 Au tembelea tovuti ya IPOA kwa usaidizi zaidi.`,
 };
 
+// Add the FAQ knowledge base (English + Swahili for extensibility)
+const FAQ_KNOWLEDGE_BASE = [
+  {
+    q_en: "am i under arrest",
+    q_sw: "je, nimekamatwa",
+    keywords: ["under arrest", "nimekamatwa"],
+    en: "Under Kenyan law, an officer must clearly inform you that you’re under arrest and state the reason—either verbally or in writing—before you can be legally detained (Criminal Procedure Code, Section 50).",
+    sw: "Sheria ya Kenya inahitaji polisi akujulishe wazi kama umekamatwa na aseme sababu, kwa maneno au maandishi, kabla ya kukushikilia kisheria (Sheria ya Mwenendo wa Jinai, Sehemu ya 50)."
+  },
+  {
+    q_en: "what are my rights now that i'm arrested",
+    q_sw: "haki zangu ni zipi nikiwa nimekamatwa",
+    keywords: ["rights now that i’m arrested", "nimekamatwa", "aki zangu"],
+    en: `You have the right to:
+• Be informed promptly of the reason for your arrest (Constitution, Art. 49(1)(a));
+• Remain silent—anything you say may be used in evidence (Art. 49(1)(b));
+• Consult and be represented by a lawyer of your choice (Art. 50(2));
+• Be produced before a court within 24 hours (Art. 50(2)).`,
+    sw: `Una haki ya:
+• Kupewa taarifa mara moja juu ya sababu ya kukamatwa (Katiba, Kifungu 49(1)(a));
+• Kunayamaza—chochote utakachosema kinaweza kutumika kama ushahidi (49(1)(b));
+• Kuwasiliana na kuwakilishwa na wakili wa chaguo lako (50(2));
+• Kupelekwa mahakamani ndani ya saa 24 (50(2)).`
+  },
+  {
+    q_en: "can i call someone",
+    q_sw: "naweza kumpigia mtu simu",
+    keywords: ["call someone", "piga simu", "nipigie simu"],
+    en: "Yes—you have the right to at least one phone call to inform a family member or lawyer of your arrest without delay (Criminal Procedure Code, Section 54). If you’re denied, it’s unlawful.",
+    sw: "Ndiyo—una haki ya kupiga simu angalau mara moja kuwaarifu ndugu au wakili wako kuhusu kukamatwa kwako mara moja (Sheria ya Mwenendo wa Jinai, Sehemu ya 54). Ukinyimwa ni kinyume na sheria."
+  },
+  {
+    q_en: "how long can they hold me without charging",
+    q_sw: "wanaweza kunishikilia kwa muda gani bila mashtaka",
+    keywords: ["hold me without charging", "bila mashtaka"],
+    en: "Police can hold you for up to 24 hours from the time of arrest (extendable by a court for up to 24 more hours in serious cases), but not beyond that without being charged or produced in court (Art. 50(2)).",
+    sw: "Polisi wanaweza kukushikilia hadi saa 24 tangu kukamatwa (inaweza kuongezwa na mahakama kwa saa zingine 24 kwenye kesi nzito), lakini si zaidi ya hapo bila kukushtaki au kukupeleka mahakamani (50(2))."
+  },
+  {
+    q_en: "what if they're demanding a bribe",
+    q_sw: "kama polisi wanadai rushwa nifanye nini",
+    keywords: ["bribe", "rushwa"],
+    en: "Refuse—asking or accepting a bribe is a criminal offense for the officer (Penal Code, Section 10). You can report the misconduct to IPOA (tel. 1559) or use HakiAI’s ‘Report Misconduct’ workflow.",
+    sw: "Kataa—kuomba au kupokea rushwa ni kosa la jinai kwa polisi (Kanuni ya Adhabu, Sehemu ya 10). Unaweza kuripoti kwa IPOA (simu 1559) au tumia utaratibu wa ‘Kuripoti Ukiukaji’ wa HakiAI."
+  },
+  {
+    q_en: "can they search me or my belongings",
+    q_sw: "wanaweza kunikagua au vitu vyangu",
+    keywords: ["search me", "search belongings", "kunikagua", "vitu vyangu"],
+    en: "They can only search you or your immediate surroundings if they have a valid warrant, or if it’s necessary to prevent evidence destruction—otherwise, it’s unlawful (Constitution, Art. 31).",
+    sw: "Polisi wanaweza kukukagua au mazingira yako tu ikiwa wana hati halali ya ukaguzi, au kama inahitajika kuzuia ushahidi kuharibiwa—vinginevyo ni kinyume cha sheria (Katiba, Kif. 31)."
+  },
+  {
+    q_en: "what if they won't let me see a lawyer",
+    q_sw: "wanikataa kumwona wakili",
+    keywords: ["see a lawyer", "wakili"],
+    en: "That’s a breach of your rights. Demand to see your lawyer. If denied, record the refusal—HakiAI can help escalate to a legal support hotline.",
+    sw: "Hiyo ni kuvunja haki zako. Dai kumuona wakili. Iwapo utanyimwa, dhibitisha hilo—HakiAI inaweza kusaidia kutoa taarifa kwa msaada wa kisheria wa dharura."
+  },
+  {
+    q_en: "do i have the right to medical attention",
+    q_sw: "haki ya kupata matibabu",
+    keywords: ["medical attention", "matibabu"],
+    en: "Yes. If you’re unwell or injured, you have a right to prompt medical treatment under police supervision (Criminal Procedure Code, Section 61).",
+    sw: "Ndiyo. Kama umeumia au hujisikii vizuri, una haki ya kupata matibabu ya haraka ukiwa chini ya usimamizi wa polisi (Sheria ya Mwenendo wa Jinai, Sehemu ya 61)."
+  },
+  {
+    q_en: "can i record or film the arrest",
+    q_sw: "naweza kurekodi au kupiga picha kukamatwa",
+    keywords: ["record", "film", "kurekodi", "kupiga picha"],
+    en: "Yes—Kenyan citizens have a right to record interactions with state officers in public spaces, provided it doesn’t obstruct their duties (Art. 31).",
+    sw: "Ndiyo—Mkenya ana haki ya kurekodi matukio na polisi hadharani, mradi haitatiza kazi zao (Kif. 31)."
+  },
+  {
+    q_en: "how do i file a complaint about police brutality",
+    q_sw: "namna ya kuripoti polisi waliokiuka",
+    keywords: ["complaint about police brutality", "police brutality", "ukuripoti polisi", "ripoti polisi"],
+    en: "Contact the Independent Policing Oversight Authority (IPOA) on 1559 or online. Fill out their form, supply any evidence (photos, recordings), and they must investigate (IPOA Act, 2011).",
+    sw: "Wasiliana na IPOA (1559) au mtandaoni. Jaza fomu yao, toa ushahidi (picha, video), na wanapaswa kufanya uchunguzi (Sheria ya IPOA, 2011)."
+  },
+  {
+    q_en: "what happens if my rights are violated",
+    q_sw: "ikitokea haki zangu zimekiukwa",
+    keywords: ["rights are violated", "haki zimekiukwa"],
+    en: "You can sue the State for unlawful arrest, assault, or denial of rights—and seek compensation. Article 24 allows anyone to go to court if their rights are infringed.",
+    sw: "Unaweza kushtaki Serikali kwa kukamatwa bila sababu, kushambuliwa, au kunyimwa haki—na kudai fidia. Kif. 24 kinakupa uwezo wa kwenda mahakamani ukiathiriwa."
+  },
+  {
+    q_en: "can they detain me for questioning without arresting me",
+    q_sw: "wanaweza kunishikilia bila kukamatwa rasmi",
+    keywords: ["detain me for questioning", "shikilia bila kukamatwa"],
+    en: "Police cannot detain you for questioning without formally arresting you. If you haven’t been told you’re under arrest, you should be free to leave—otherwise, ask if you are being detained or are free to go.",
+    sw: "Polisi hawawezi kukushikilia kwa mahojiano bila kukukamata rasmi. Kama hujaambiwa umewekwa chini ya ulinzi, unaweza kuondoka—uliza: 'Ninaweza kwenda au nimekamatwa?'"
+  }
+];
+
+// Utility: try to match user input to FAQ item (returns answer or null)
+function matchFAQ(question: string, lang: "en" | "sw") {
+  const qLow = question.trim().toLowerCase();
+  // Keyword-based matching (at least one keyword match)
+  for (const item of FAQ_KNOWLEDGE_BASE) {
+    for (const keyword of item.keywords) {
+      if (qLow.includes(keyword)) {
+        return lang === "sw" ? item.sw : item.en;
+      }
+    }
+    // Soft phrasing match
+    if (
+      (lang === "en" && qLow.includes(item.q_en)) ||
+      (lang === "sw" && qLow.includes(item.q_sw))
+    ) {
+      return lang === "sw" ? item.sw : item.en;
+    }
+  }
+  return null;
+}
+
 const HakiAIChat: React.FC<Props> = ({ language, onUrgentDetected, activeTopic }) => {
   const [messages, setMessages] = useState<Message[]>([
     { sender: "ai", text: defaultGreetings[language] }
@@ -88,7 +205,7 @@ const HakiAIChat: React.FC<Props> = ({ language, onUrgentDetected, activeTopic }
     const text = input.trim();
     setMessages((prev) => [...prev, { sender: "user", text }]);
 
-    // URGENCY detection (simple keyword match)
+    // 1. URGENCY detection (simple keyword match)
     if (urgentKeywords.some(keyword => text.toLowerCase().includes(keyword))) {
       onUrgentDetected();
       toast("Emergency detected", {
@@ -108,28 +225,40 @@ const HakiAIChat: React.FC<Props> = ({ language, onUrgentDetected, activeTopic }
         }
       ]);
     } else {
-      // ### NEW: Match knowledge base
-      const article = matchConstitutionArticle(text, language);
-      if (article) {
+      // 2. MATCH FAQ (your new knowledge base) – FAST match for fast help!
+      const faqAnswer = matchFAQ(text, language);
+      if (faqAnswer) {
         setMessages((prev) => [
           ...prev,
           {
             sender: "ai",
-            text:
-              language === "sw"
-                ? `Kifungu cha ${article.article}: ${article.title.sw}\n\n${article.summary.sw}\n\n${article.text.sw}`
-                : `Article ${article.article}: ${article.title.en}\n\n${article.summary.en}\n\n${article.text.en}`
+            text: faqAnswer
           }
         ]);
       } else {
-        // Fallback answer: now includes IPOA numbers and more details!
-        setMessages((prev) => [
-          ...prev,
-          {
-            sender: "ai",
-            text: IPOA_HELP_INFO[language]
-          }
-        ]);
+        // 3. Previous logic – try constitution/search response
+        const article = matchConstitutionArticle(text, language);
+        if (article) {
+          setMessages((prev) => [
+            ...prev,
+            {
+              sender: "ai",
+              text:
+                language === "sw"
+                  ? `Kifungu cha ${article.article}: ${article.title.sw}\n\n${article.summary.sw}\n\n${article.text.sw}`
+                  : `Article ${article.article}: ${article.title.en}\n\n${article.summary.en}\n\n${article.text.en}`
+            }
+          ]);
+        } else {
+          // 4. Fallback to IPOA info as before
+          setMessages((prev) => [
+            ...prev,
+            {
+              sender: "ai",
+              text: IPOA_HELP_INFO[language]
+            }
+          ]);
+        }
       }
     }
     setInput("");
