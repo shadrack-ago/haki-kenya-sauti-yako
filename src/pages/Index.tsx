@@ -6,6 +6,7 @@ import EmergencyAlert from "@/components/EmergencyAlert";
 import TopicQuickLinks from "@/components/TopicQuickLinks";
 import DailyLesson from "@/components/DailyLesson";
 import HakiAIChat from "@/components/HakiAIChat";
+import HeroIllustration from "@/components/HeroIllustration";
 
 const Index = () => {
   const [language, setLanguage] = useState<"en" | "sw">("en");
@@ -15,9 +16,11 @@ const Index = () => {
 
   const handleUrgent = () => setUrgent(true);
   const handleEscalate = () => {
-    alert(language === "sw"
-      ? "Pigia simu nambari ya msaada wa kisheria: 1559 au tembelea tovuti ya IPOA."
-      : "Call the legal support hotline: 1559 or visit the IPOA website.");
+    alert(
+      language === "sw"
+        ? "Pigia simu nambari ya msaada wa kisheria: 1559 au tembelea tovuti ya IPOA."
+        : "Call the legal support hotline: 1559 or visit the IPOA website."
+    );
     setUrgent(false);
   };
   const handleTopic = (topicKey: string) => {
@@ -29,57 +32,95 @@ const Index = () => {
   const handleEmergencyClick = () => setUrgent(true);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-background via-accent/20 to-background">
+    <main className="min-h-screen bg-gradient-to-br from-blue-100 via-accent/40 to-background animate-fade-in">
       <div className="max-w-4xl mx-auto px-4 py-6">
-        <HakiAIHeader 
-          onTalkClick={handleTalkClick}
-          onEmergencyClick={handleEmergencyClick}
-        />
-        
-        <div className="space-y-6">
-          <div className="flex justify-center">
-            <LanguageSelector value={language} onChange={setLanguage} />
+        {/* Hero & Welcome Section */}
+        <section className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mb-10">
+          <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-4 animate-fade-in">
+            <span className="inline-flex items-center gap-2 text-3xl md:text-4xl font-extrabold font-serif text-primary drop-shadow-md">
+              <span className="rounded-full bg-white/85 shadow px-2 py-1 mr-1 text-2xl">🇰🇪</span>
+              <span>
+                {language === "sw"
+                  ? <>Msaada wa Kisheria kwa Wakenya</>
+                  : <>Kenya's Legal Rights Chatbot</>
+                }
+              </span>
+            </span>
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2 mt-2 leading-tight">
+              {language === "sw"
+                ? "Jifunze haki zako. Uliza maswali. Pata msaada papo hapo."
+                : "Know your rights. Ask any question. Get instant Kenyan legal guidance."
+              }
+            </h1>
+            <p className="text-muted-foreground text-lg max-w-xl font-medium">
+              {language === "sw"
+                ? "HakiAI ni msaidizi anayekupa taarifa za msingi kuhusu katiba ya Kenya – hasa ukiwa na matatizo na polisi au ukiwa kwenye dharura."
+                : "HakiAI helps you understand your rights under the Kenyan Constitution, especially if you’re facing police or emergency situations."
+              }
+            </p>
+            <div className="flex gap-2 pt-2 md:pt-4">
+              <button
+                onClick={handleTalkClick}
+                className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-bold shadow-lg hover:scale-105 transition-transform duration-200 text-lg animate-pulse"
+              >
+                {language === "sw" ? "Anza Mazungumzo" : "Start Conversation"}
+              </button>
+              <button
+                onClick={handleEmergencyClick}
+                className="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-red-700 hover:scale-105 transition-transform duration-200 text-lg"
+              >
+                {language === "sw" ? "Msamaha wa Dharura" : "Emergency Help"}
+              </button>
+            </div>
+            <div className="pt-3">
+              <LanguageSelector value={language} onChange={setLanguage} />
+            </div>
           </div>
-          
-          <EmergencyAlert urgent={urgent} onEscalate={handleEscalate} />
-          
+          <div className="flex-1 flex items-center justify-center">
+            <HeroIllustration />
+          </div>
+        </section>
+
+        {/* Emergency Alert */}
+        <EmergencyAlert urgent={urgent} onEscalate={handleEscalate} />
+
+        {/* Main Panel */}
+        <div className="space-y-6">
+          {/* Quick Links & Lessons */}
           {!showChat && (
             <>
-              <div className="text-center space-y-4">
-                <h2 className="text-2xl font-bold text-foreground">
-                  {language === "sw" ? "Mada za Haraka" : "Quick Topics"}
-                </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                  {language === "sw" 
-                    ? "Chagua moja ya mada hizi ili kupata majibu ya haraka kuhusu haki zako"
-                    : "Choose one of these topics to get quick answers about your rights"
-                  }
-                </p>
-              </div>
-              <TopicQuickLinks language={language} onTopic={handleTopic} />
-              
-              <DailyLesson language={language} />
-              
-              <div className="text-center pt-4">
-                <button
-                  onClick={handleTalkClick}
-                  className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition-transform duration-200"
-                >
-                  {language === "sw" ? "Anza Mazungumzo" : "Start Conversation"}
-                </button>
-              </div>
+              <section className="mb-6">
+                <div className="text-center space-y-3">
+                  <h2 className="text-2xl font-bold text-foreground tracking-tight">
+                    {language === "sw" ? "Mada za Haraka" : "Quick Topics"}
+                  </h2>
+                  <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                    {language === "sw"
+                      ? "Chagua moja ya mada hizi ili kupata majibu ya haraka kuhusu haki zako"
+                      : "Choose a topic to get quick, reliable answers about your rights."
+                    }
+                  </p>
+                </div>
+                <div className="mt-4">
+                  <TopicQuickLinks language={language} onTopic={handleTopic} />
+                </div>
+              </section>
+              <section className="mb-4">
+                <DailyLesson language={language} />
+              </section>
             </>
           )}
-          
+
+          {/* Chat Area */}
           {showChat && (
-            <div className="space-y-4">
+            <div className="space-y-4 animate-fade-in">
               <div className="flex justify-between items-center">
                 <h2 className="text-2xl font-bold">
                   {language === "sw" ? "Mazungumzo na HakiAI" : "Chat with HakiAI"}
                 </h2>
                 <button
                   onClick={() => setShowChat(false)}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors font-semibold"
                 >
                   {language === "sw" ? "← Rudi Nyumbani" : "← Back to Home"}
                 </button>
@@ -92,8 +133,9 @@ const Index = () => {
             </div>
           )}
         </div>
-        
-        <footer className="mt-16 py-8 border-t border-border">
+
+        {/* Footer */}
+        <footer className="mt-20 py-10 border-t border-border bg-accent/10 rounded-xl animate-fade-in">
           <div className="text-center space-y-4">
             <div className="flex justify-center items-center gap-2 text-lg font-semibold">
               <span>🇰🇪</span>
@@ -101,8 +143,8 @@ const Index = () => {
             </div>
             <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
               {language === "sw"
-                ? "HakiAI ni msaidizi wa kisheria unaotumia akili bandia kuwasaidia raia wa Kenya kujua haki zao. Taarifa hizi ni za kirejeleo tu na hazipaswi kuchukuliwa kama ushauri wa kisheria wa binafsi."
-                : "HakiAI is an AI-powered legal assistant helping Kenyan citizens understand their rights. This information is for reference only and should not be considered personal legal advice."
+                ? "HakiAI ni msaidizi wa kisheria unaotumia AI kuwasaidia raia wa Kenya kuelewa haki zao. Taarifa hizi ni kwa marejeo tu na hazipaswi kutumika kama ushauri wa kisheria wa kibinafsi."
+                : "HakiAI is an AI assistant that helps Kenyan citizens understand their rights. This is reference information only, not personal legal advice."
               }
             </p>
             <div className="flex justify-center gap-4 text-sm text-muted-foreground">
