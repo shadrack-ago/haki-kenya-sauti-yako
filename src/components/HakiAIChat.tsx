@@ -1,8 +1,8 @@
-
 import React, { useRef, useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/sonner";
+import { matchConstitutionArticle } from "@/utils/constitutionSearch";
 
 interface Message {
   sender: "user" | "ai";
@@ -83,17 +83,32 @@ const HakiAIChat: React.FC<Props> = ({ language, onUrgentDetected, activeTopic }
         }
       ]);
     } else {
-      // For now, echo generic answer; in future will match more
-      setMessages((prev) => [
-        ...prev,
-        {
-          sender: "ai",
-          text:
-            language === "sw"
-              ? "Asante kwa swali lako. Hapa kuna muhtasari wa haki zako: Una haki ya kunyamaza na kuomba wakili (Katiba Kifungu 49)."
-              : "Thank you for your question. Here is a summary of your rights: You have the right to remain silent and to request a lawyer (Constitution Art. 49)."
-        }
-      ]);
+      // ### NEW: Match knowledge base
+      const article = matchConstitutionArticle(text, language);
+      if (article) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            sender: "ai",
+            text:
+              language === "sw"
+                ? `Kifungu cha ${article.article}: ${article.title.sw}\n\n${article.summary.sw}\n\n${article.text.sw}`
+                : `Article ${article.article}: ${article.title.en}\n\n${article.summary.en}\n\n${article.text.en}`
+          }
+        ]);
+      } else {
+        // Fallback answer
+        setMessages((prev) => [
+          ...prev,
+          {
+            sender: "ai",
+            text:
+              language === "sw"
+                ? "Samahani, sikuweza kupata jibu la moja kwa moja kwenye katiba. Tafadhali jaribu kuuliza kwa njia nyingine au uliza kuhusu haki zako."
+                : "Sorry, I couldn't find a direct answer in the Constitution. Please rephrase or ask about your rights."
+          }
+        ]);
+      }
     }
     setInput("");
   };
@@ -115,7 +130,7 @@ const HakiAIChat: React.FC<Props> = ({ language, onUrgentDetected, activeTopic }
                 msg.sender === "user"
                   ? "bg-primary text-primary-foreground"
                   : "bg-muted"
-              }`}
+              } whitespace-pre-line`}
             >
               {msg.text}
             </div>
